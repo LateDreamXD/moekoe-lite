@@ -1,10 +1,12 @@
 {
-  "name": "moekoe-tauri",
+  "name": "moekoe-lite",
+  "private": true,
+  "type": "module",
   "version": "0.1.0",
-  "description": "用 tauri 替换掉 moekoe music 的 electron",
+  "description": "萌音极速版",
   "scripts": {
     "postinstall": "unrun bin/postinstall.ts && pnpm run patch",
-    "dev": "cd core && pnpm dev",
+    "dev": "cd core && pnpm vite",
     "build": "cd core && pnpm build",
     "patch": "unrun bin/patch.ts",
     "postbuild": "unrun bin/api-build.ts",
@@ -14,6 +16,9 @@
   "author": "晚梦 <xiaozhisans@qq.com>",
   "license": "GPL-2.0-only",
   "packageManager": "pnpm@10.28.0",
+  "dependencies": {
+    "@tauri-apps/plugin-shell": "~2.3.5"
+  },
   "devDependencies": {
     "@tauri-apps/cli": "^2.10.0",
     "@types/node": "^25.3.0",

@@ -2,7 +2,7 @@
   "$schema": "../node_modules/@tauri-apps/cli/config.schema.json",
   "productName": "MoeKoe Music",
   "version": "../core/package.json",
-  "identifier": "cn.MoeKoe.Music.tauri",
+  "identifier": "cn.MoeKoe.Music.lite",
   "build": {
     "frontendDist": "../core/dist",
     "devUrl": "http://localhost:8080/",
@@ -12,9 +12,9 @@
   "app": {
     "windows": [
       {
-        "title": "MoeKoe Music: Tauri Edition",
-        "width": 1024,
-        "height": 768,
+        "title": "MoeKoe Music Lite",
+        "width": 1280,
+        "height": 720,
         "resizable": true,
         "fullscreen": false
       }
@@ -32,6 +32,7 @@
       "../core/build/icons/icon.png",
       "../icons/linux_256x.png"
     ],
-    "category": "Music"
+    "category": "Music",
+    "externalBin": ["bin/api"]
   }
 }
