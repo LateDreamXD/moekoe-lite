@@ -35,16 +35,16 @@ jobs:
         include:
           - platform: 'macos-latest' # for Arm based macs (M1 and above).
             args: '--target aarch64-apple-darwin'
-            file: './src-tauri/target/release/bundle/dmg/MoeKoe Music_${{ needs.get-version.outputs.version }}_aarch64.dmg'
+            file: './src-tauri/target/aarch64-apple-darwin/release/bundle/dmg/MoeKoe Music_${{ needs.get-version.outputs.version }}_aarch64.dmg'
           - platform: 'macos-latest' # for Intel based macs.
             args: '--target x86_64-apple-darwin'
-            file: './src-tauri/target/release/bundle/dmg/MoeKoe Music_${{ needs.get-version.outputs.version }}_x64.dmg'
+            file: './src-tauri/target/x86_64-apple-darwin/release/bundle/dmg/MoeKoe Music_${{ needs.get-version.outputs.version }}_x64.dmg'
           - platform: 'ubuntu-22.04' # for Tauri v1 you could replace this with ubuntu-20.04.
             args: ''
             file: './src-tauri/target/release/bundle'
           - platform: 'windows-latest'
             args: ''
-            file: './src-tauri/target/release/app.exe'
+            file: '"./src-tauri/target/release/app.exe", "./src-tauri/target/release/api.exe"'
 
     runs-on: ${{ matrix.platform }}
     steps:
@@ -78,8 +78,16 @@ jobs:
           pnpm install
           pnpm tauri build ${{ matrix.args }}
 
+      - name: rust cache
+        uses: Swatinem/rust-cache@v2
+
+      - name: archive artifact (windows only)
+        if: matrix.platform == 'windows-latest'
+        run: |
+          Compress-Archive -Path ${{ matrix.file }} -DestinationPath ${{ matrix.platform }}.zip
+
       - name: upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: ${{ matrix.platform }}${{ contains(matrix.args, 'aarch64') && '_aarch64' || '' }}
-          path: ${{ matrix.file }}
+          path: ${{ matrix.platform == 'windows-latest' && 'windows-latest.zip' || matrix.file }}
