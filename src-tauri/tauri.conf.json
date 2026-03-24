@@ -2,7 +2,7 @@
   "$schema": "../node_modules/@tauri-apps/cli/config.schema.json",
   "productName": "MoeKoe Music",
   "version": "../core/package.json",
-  "identifier": "cn.MoeKoe.Music.lite",
+  "identifier": "cn.moekoe.music.lite",
   "build": {
     "frontendDist": "../core/dist",
     "devUrl": "http://localhost:8080/",
