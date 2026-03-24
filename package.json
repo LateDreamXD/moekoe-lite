@@ -15,7 +15,7 @@
   },
   "author": "晚梦 <xiaozhisans@qq.com>",
   "license": "GPL-2.0-only",
-  "packageManager": "pnpm@10.28.0",
+  "packageManager": "pnpm@10.32.1",
   "dependencies": {
     "@tauri-apps/plugin-shell": "~2.3.5"
   },
