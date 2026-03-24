@@ -1,0 +1,96 @@
+From 0b57fc0edb8fb574fc21dfbfe951c8f35c8d89b7 Mon Sep 17 00:00:00 2001
+From: LateDreamXD <127290936+LateDreamXD@users.noreply.github.com>
+Date: Tue, 24 Mar 2026 15:38:22 +0800
+Subject: [PATCH] patch Header.vue
+
+---
+ src/components/Header.vue | 26 +++++++++++---------------
+ 1 file changed, 11 insertions(+), 15 deletions(-)
+
+diff --git a/src/components/Header.vue b/src/components/Header.vue
+index 6eb08f2..cfaa5db 100644
+--- a/src/components/Header.vue
++++ b/src/components/Header.vue
+@@ -39,7 +39,7 @@
+                                 </router-link>
+                             </li>
+                             <li>
+-                                <a @click="openRegisterUrl(downloadUrl || 'https://github.com/iAJue/MoeKoeMusic/releases')" style="position: relative;">
++                                <a @click="openRegisterUrl(downloadUrl || 'https://github.com/LateDreamXD/moekoe-lite/releases')" style="position: relative;">
+                                     <i class="fab fa-github"></i> {{ $t('geng-xin') }}
+                                     <i v-if="showNewBadge" class="new-badge">new</i>
+                                 </a>
+@@ -69,7 +69,10 @@
+             <p>{{ $t('6-ben-xiang-mu-jin-yong-yu-dui-ji-shu-ke-hang-xing-de-tan-suo-ji-yan-jiu-bu-jie-shou-ren-he-shang-ye-bao-kuo-dan-bu-xian-yu-guang-gao-deng-he-zuo-ji-juan-zeng') }}</p>
+             <p>{{ $t('7-ru-guo-guan-fang-yin-le-ping-tai-jue-de-ben-xiang-mu-bu-tuo-ke-lian-xi-ben-xiang-mu-geng-gai-huo-yi-chu') }}</p>
+             <button @click="Disclaimer">{{ $t('guan-bi-an-niu') }}</button>
+-            <div class="version-number">© MoeKoe Music <span v-if="appVersion">V{{ appVersion }} - {{ platform }}</span></div>
++            <div class="version-number">
++				© MoeKoe Music <span>V{{ appVersion }} - {{ platform }}</span>
++				© MoeKoe Music Lite <span>v{{ patchVersion }}</span>
++			</div>
+         </div>
+     </div>
+ </template>
+@@ -80,6 +83,8 @@ import { useRouter, useRoute } from 'vue-router';
+ import { MoeAuthStore } from '../stores/store';
+ import { openRegisterUrl } from '../utils/utils';
+ import { useI18n } from 'vue-i18n';
++import { version as appVersion } from '../../package.json';
++import { version as patchVersion } from '../../../package.json';
+ const MoeAuth = MoeAuthStore();
+ const searchQuery = ref('');
+ const isDisclaimerVisible = ref(false);
+@@ -91,18 +96,9 @@ const forwardStack = ref([]);
+ const { t } = useI18n();
+ const showNewBadge = ref(false);
+ const downloadUrl = ref('');
+-const appVersion = ref('');
+ const platform = ref('');
+ onMounted(() => {
+     updateNavigationStatus();
+-    if (window.electron) {
+-        window.electron.ipcRenderer.on('version', (version) => {
+-            appVersion.value = version;
+-            fetchLatestVersion();
+-            platform.value = window.electron.platform;
+-            localStorage.setItem('version', version);
+-        });
+-    }
+ });
+ const Disclaimer = () => {
+     isDisclaimerVisible.value = !isDisclaimerVisible.value;
+@@ -135,7 +131,7 @@ const logout = async () => {
+     const result = await window.$modal.confirm(t('ni-que-ren-yao-tui-chu-deng-lu-ma'));
+     if (result) {
+         MoeAuth.clearData();
+-        router.push({ path: '/' });   
++        router.push({ path: '/' });
+     }
+ }
+ const showProfile = ref(false);
+@@ -175,12 +171,12 @@ const handleClickOutside = (event) => {
+ 
+ const fetchLatestVersion = async () => {
+     try {
+-        const response = await fetch('https://api.github.com/repos/iAJue/MoeKoeMusic/releases/latest');
++        const response = await fetch('https://api.github.com/repos/LateDreamXD/moekoe-lite/releases/latest');
+         const data = await response.json();
+         downloadUrl.value = data.html_url;
+         const latestVersion = data.tag_name.replace(/^v/, '');
+         if (isVersionLower(appVersion.value, latestVersion)) {
+-            showNewBadge.value = true; 
++            showNewBadge.value = true;
+         }
+     } catch (error) {
+         console.error('获取最新版本号失败:', error);
+@@ -478,4 +474,4 @@ header {
+     font-size: 12px;
+     color: #666;
+ }
+-</style>
+\ No newline at end of file
++</style>
+-- 
+2.52.0.windows.1
+
