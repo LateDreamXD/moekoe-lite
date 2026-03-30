@@ -73,13 +73,22 @@ jobs:
         # webkitgtk 4.0 is for Tauri v1 - webkitgtk 4.1 is for Tauri v2.
         # You can remove the one that doesn't apply to your app to speed up the workflow a bit.
 
-      - name: install and build
-        run: |
-          pnpm install
-          pnpm tauri build ${{ matrix.args }}
-
       - name: rust cache
         uses: Swatinem/rust-cache@v2
+
+      - name: install
+        run: |
+          pnpm install
+
+      - name: build api (macos x64 only)
+        if: matrix.platform == 'macos-latest' && matrix.args == '--target x86_64-apple-darwin'
+        run: |
+          pnpm run postbuild
+          cp -r ./core/api/bin/app_macos ./src-tauri/bin/api-x86_64-apple-darwin
+
+      - name: build
+        run: |
+          pnpm tauri build ${{ matrix.args }}
 
       - name: archive artifact (windows only)
         if: matrix.platform == 'windows-latest'
