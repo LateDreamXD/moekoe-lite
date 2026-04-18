@@ -1,25 +1,25 @@
-From feaeee143f71e86f0315036381b312be705554b2 Mon Sep 17 00:00:00 2001
+From 96105b8b9d3745b6c1467788be8eeb7d5ebb8430 Mon Sep 17 00:00:00 2001
 From: LateDreamXD <127290936+LateDreamXD@users.noreply.github.com>
-Date: Fri, 20 Feb 2026 13:48:11 +0800
-Subject: [PATCH] patch: main.js
+Date: Sat, 18 Apr 2026 16:03:04 +0800
+Subject: [PATCH] patch main.js
 
 ---
- src/main.js | 12 ------------
- 1 file changed, 12 deletions(-)
+ src/main.js | 14 +-------------
+ 1 file changed, 1 insertion(+), 13 deletions(-)
 
 diff --git a/src/main.js b/src/main.js
-index e4206dd..87b5b43 100644
+index afcd4ef..c66c857 100644
 --- a/src/main.js
 +++ b/src/main.js
 @@ -8,7 +8,6 @@ import ModalPlugin from './plugins/ModalPlugin';
  import MessagePlugin from './plugins/MessagePlugin';
  import i18n from './utils/i18n';
- import '@/assets/themes/dark.css';
+ import '@/assets/themes/dark.scss';
 -import { registerSW } from 'virtual:pwa-register'
  
  const app = createApp(App);
  const pinia = createPinia();
-@@ -29,17 +28,6 @@ window.addEventListener('unhandledrejection', event => {
+@@ -28,21 +27,10 @@ window.addEventListener('unhandledrejection', event => {
    // window.$modal.alert('系统错误');
  });
  
@@ -37,6 +37,12 @@ index e4206dd..87b5b43 100644
  app.use(pinia);
  app.use(router);
  app.use(i18n);
+ app.use(ModalPlugin);
+ app.use(MessagePlugin);
+ 
+-app.mount('#app');
+\ No newline at end of file
++app.mount('#app');
 -- 
 2.52.0.windows.1
 
