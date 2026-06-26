@@ -1,0 +1,15 @@
+{
+  "explorer.fileNesting.enabled": true,
+  "explorer.fileNesting.patterns": {
+    ".git*": ".gitattributes, .gitignore, .gitkeep",
+    "Cargo.toml": "Cargo.lock, tauri.conf.json",
+    "Dockerfile": "docker-compose.yml",
+    "tsconfig.json": "tsconfig.*.json, components.d.ts, env.d.ts",
+    "vite.config.*": "jsconfig*, vitest.config.*, cypress.config.*, playwright.config.*, tailwind.config.*, components.json",
+    "package.json": "package-lock.json, pnpm*, .yarnrc*, yarn*, .eslint*, eslint*, .oxlint*, oxlint*, .oxfmt*, .prettier*, prettier*, .editorconfig",
+    "README*": "CHANGELOG*, CODE_OF_CONDUCT*, CONTRIBUTING*, LICENSE"
+  },
+  "editor.codeActionsOnSave": {
+    // "source.fixAll": "explicit"
+  }
+}

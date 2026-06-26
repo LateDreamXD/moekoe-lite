@@ -1,0 +1,14 @@
+{
+  "name": "moekoe-lite",
+  "type": "module",
+  "version": "0.1.0",
+  "private": true,
+  "description": "萌音极速版",
+  "packageManager": "pnpm@11.9.0",
+  "scripts": {
+    "dev": "wails dev",
+    "build": "wails build"
+  },
+  "author": "晚梦 <xiaozhisans@qq.com>",
+  "license": "MIT"
+}
