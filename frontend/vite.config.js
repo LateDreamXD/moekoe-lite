@@ -1,17 +1,13 @@
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
+import liteCore from './plugin/lite-core';
 import fakePwaPlugin from './plugin/fake-pwa';
-
-import { version } from './src/package.json';
 
 const cwd = process.cwd();
 
 export default defineConfig({
 	base: '',
-	define: {
-		__VERSION__: JSON.stringify(version)
-	},
-	plugins: [vue(), fakePwaPlugin()],
+	plugins: [vue(), liteCore(), fakePwaPlugin()],
 
 	resolve: {
 		alias: {

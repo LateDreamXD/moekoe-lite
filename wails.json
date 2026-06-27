@@ -6,6 +6,12 @@
   "frontend:build": "pnpm build",
   "frontend:dev:watcher": "pnpm dev",
   "frontend:dev:serverUrl": "auto",
+  "info": {
+    "companyName": "MoeKoeMusic",
+    "productName": "Moekoe Music Lite",
+    "productVersion": "0.1.0.0",
+    "copyright": "Copyright (c) 2026 MoeKoeMusic"
+  },
   "author": {
     "name": "latedream",
     "email": "xiaozhisans@qq.com"

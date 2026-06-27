@@ -1,6 +1,7 @@
+/** @type {() => import('vite').Plugin<unknown>} */
 export default function fakePwaPlugin() {
 	return {
-		name: 'fake-pwa',
+		name: 'moekoelite:fake-pwa',
 		resolveId(id) {
 			if (id === 'virtual:pwa-register')
 				return '\0virtual:pwa-register';
@@ -11,5 +12,6 @@ export default function fakePwaPlugin() {
 				return `export const registerSW = () => void 0;`;
 			return null;
 		},
+		version: '0.0.0'
 	};
 }
