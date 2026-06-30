@@ -41,7 +41,7 @@ jobs:
           node-version: 22
 
       - name: Build wails
-        uses: dAppCore/build@v4.0.0
+        uses: LateDreamXD/wails-build@main
         id: build
         with:
           build-name: moekoemusic-lite
