@@ -3,6 +3,7 @@ name: Wails build
 on:
   push:
     tags: ['v*']
+  workflow_dispatch:
 
 env:
   # Necessary for most environments as build failure can occur due to OOM issues
