@@ -31,10 +31,8 @@ jobs:
           submodules: recursive
 
       - name: Build wails
-        uses: dAppServer/wails-build-action@v2.2
+        uses: dAppCore/build@v4.0.0
         id: build
         with:
           build-name: moekoemusic-lite
           build-platform: ${{ matrix.build.platform }}
-          package: true
-          go-version: '1.20'
