@@ -1,5 +1,8 @@
 # MoeKoe Music: Tauri Edition
 
+> [!WARNING]
+> 此分支已不再维护
+
 > [!IMPORTANT]
 > 由于 Tauri 依赖在 Windows 环境依赖 [Edge WebView2](https://developer.microsoft.com/zh-cn/microsoft-edge/webview2/)  
 > 请确保你的系统没有缺失 Edge WebView2  
