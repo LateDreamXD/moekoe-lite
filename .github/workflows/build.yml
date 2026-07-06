@@ -18,10 +18,13 @@ jobs:
       matrix:
         build:
           - platform:  'linux/amd64'
+            name: moekoemusic-lite
             os: 'ubuntu-latest'
           - platform:  'windows/amd64'
+            name: moekoemusic-lite.exe
             os: 'windows-latest'
           - platform:  'darwin/universal'
+            name: moekoemusic-lite
             os: 'macos-latest'
 
     runs-on: ${{ matrix.build.os }}
@@ -44,5 +47,5 @@ jobs:
         uses: LateDreamXD/wails-build@main
         id: build
         with:
-          build-name: moekoemusic-lite
+          build-name: ${{ matrix.build.name }}
           build-platform: ${{ matrix.build.platform }}
