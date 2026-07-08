@@ -19,15 +19,18 @@ jobs:
       fail-fast: false
       matrix:
         build:
-          - platform:  'linux/amd64'
+          - platform: 'linux/amd64'
             name: moekoemusic-lite
             os: 'ubuntu-latest'
-          - platform:  'windows/amd64'
+            extra: '-tags webkit2_41'
+          - platform: 'windows/amd64'
             name: moekoemusic-lite.exe
             os: 'windows-latest'
-          - platform:  'darwin/universal'
+            extra: ''
+          - platform: 'darwin/universal'
             name: moekoemusic-lite
             os: 'macos-latest'
+            extra: ''
 
     runs-on: ${{ matrix.build.os }}
     steps:
@@ -50,6 +53,10 @@ jobs:
         with:
           go-version: '1.26'
 
+      - name: Install linux deps
+        if: ${{ runner.os == 'Linux' }}
+        run: sudo apt install libgtk-3-0 libwebkit2gtk-4.1-0
+
       - name: Install wails v2
         run: go install github.com/wailsapp/wails/v2/cmd/wails@v2.13.0
 
@@ -57,13 +64,13 @@ jobs:
         run: go mod download
 
       - name: Build
-        run: pnpm build -devtools -o ${{ matrix.build.name }} -platform ${{ matrix.build.platform }}
+        run: pnpm build -devtools -o ${{ matrix.build.name }} -platform ${{ matrix.build.platform }} ${{ matrix.build.extra }}
 
       - name: Upload Artifacts
         uses: actions/upload-artifact@v7
         with:
-          name: ${{ matrix.build.name }}-${{ matrix.build.platform }}
-          path: 'build/bin/*'
+          name: ${{ matrix.build.name }}-${{ matrix.build.os }}
+          path: 'build/bin'
 
       - name: Release
         uses: ncipollo/release-action@v1
