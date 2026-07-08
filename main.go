@@ -27,6 +27,10 @@ func main() {
 		Bind: []interface{}{
 			app,
 		},
+		SingleInstanceLock: &options.SingleInstanceLock{
+			UniqueId:               "6d6f656b-6f65-8c69-b465-2d62792d6c61",
+			OnSecondInstanceLaunch: app.onSecondInstanceLaunch,
+		},
 	})
 
 	if err != nil {
