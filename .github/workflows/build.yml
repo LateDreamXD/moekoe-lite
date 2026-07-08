@@ -1,4 +1,4 @@
-name: Build
+name: Wails build
 
 on:
   push:
@@ -22,15 +22,12 @@ jobs:
           - platform: 'linux/amd64'
             name: moekoemusic-lite
             os: 'ubuntu-latest'
-            extra: '-tags webkit2_41'
           - platform: 'windows/amd64'
             name: moekoemusic-lite.exe
             os: 'windows-latest'
-            extra: ''
           - platform: 'darwin/universal'
             name: moekoemusic-lite
             os: 'macos-latest'
-            extra: ''
 
     runs-on: ${{ matrix.build.os }}
     steps:
@@ -48,34 +45,9 @@ jobs:
           cache: 'pnpm'
           node-version: 22
 
-      - name: Setup Go
-        uses: actions/setup-go@v6
+      - name: Build wails
+        uses: LateDreamXD/wails-build@main
+        id: build
         with:
-          go-version: '1.26'
-
-      - name: Install linux deps
-        if: ${{ runner.os == 'Linux' }}
-        run: sudo apt install libgtk-3-0 libwebkit2gtk-4.1-0
-
-      - name: Install wails v2
-        run: go install github.com/wailsapp/wails/v2/cmd/wails@v2.13.0
-
-      - name: Install Go Modules
-        run: go mod download
-
-      - name: Build
-        run: pnpm build -devtools -o ${{ matrix.build.name }} -platform ${{ matrix.build.platform }} ${{ matrix.build.extra }}
-
-      - name: Upload Artifacts
-        uses: actions/upload-artifact@v7
-        with:
-          name: ${{ matrix.build.name }}-${{ matrix.build.os }}
-          path: 'build/bin'
-
-      - name: Release
-        uses: ncipollo/release-action@v1
-        if: ${{ github.ref_type == 'tag' }}
-        with:
-          artifacts: 'build/bin/*'
-          draft: true
-          name: 'Moekoe Music Lite ${{ github.ref_name }}'
+          build-name: ${{ matrix.build.name }}
+          build-platform: ${{ matrix.build.platform }}

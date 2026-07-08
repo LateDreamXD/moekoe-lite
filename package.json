@@ -6,7 +6,7 @@
   "description": "萌音极速版",
   "packageManager": "pnpm@11.9.0",
   "scripts": {
-    "dev": "wails dev",
+    "dev": "wails dev -s",
     "build": "wails build"
   },
   "author": "晚梦 <xiaozhisans@qq.com>",
