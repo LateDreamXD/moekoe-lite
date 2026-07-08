@@ -1,4 +1,4 @@
-name: Wails build
+name: Build
 
 on:
   push:
@@ -43,9 +43,25 @@ jobs:
           cache: 'pnpm'
           node-version: 22
 
-      - name: Build wails
-        uses: LateDreamXD/wails-build@main
-        id: build
+      - name: Setup Go
+        uses: actions/setup-go@v6
+
+      - name: Install Go Modules
+        run: go mod download
+
+      - name: Build
+        run: pnpm build -devtools -o ${{ matrix.build.name }} -platform ${{ matrix.build.platform }}
+
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v7
         with:
-          build-name: ${{ matrix.build.name }}
-          build-platform: ${{ matrix.build.platform }}
+          name: ${{ matrix.build.name }}-${{ matrix.build.platform }}
+          path: 'build/bin/*'
+
+      - name: Release
+        uses: ncipollo/release-action@v1
+        if: ${{ github.ref_type == 'tag' }}
+        with:
+          artifacts: 'build/bin/*'
+          draft: true
+          name: 'Moekoe Music Lite ${{ github.ref_name }}'
