@@ -8,9 +8,9 @@ info:
   companyName: "MoeKoe Music" # The name of the company
   productName: "MoeKoe Music Lite" # The name of the application
   productIdentifier: "cn.latedream.moekoemusic-lite" # The unique product identifier
-  description: "MoeKoe 萌音,一个高颜值的kugou第三方播放器" # The application description
+  description: "MoeKoeLite 萌音极速版" # The application description
   copyright: "(c) 2026 MoeKoe Music" # Copyright text
-  comments: "" # Comments
+  comments: "MoeKoe 萌音,一个高颜值的kugou第三方播放器" # Comments
   version: "0.1.0" # The application version
   # cfBundleIconName: "appicon" # The macOS icon name in Assets.car icon bundles (optional)
   #                               # Should match the name of your .icon file without the extension
@@ -52,6 +52,8 @@ dev_mode:
       - "*.ts" # The frontend directory will be excluded entirely by the setting above.
     git_ignore: true
   executes:
+    - cmd: wails3 build DEV=true
+      type: blocking
     - cmd: wails3 task common:dev:frontend
       type: background
     - cmd: wails3 task run

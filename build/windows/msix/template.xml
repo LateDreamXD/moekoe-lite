@@ -10,40 +10,45 @@
     <Installer
         Path="moekoemusic-lite.exe"
         Arguments=""
-        InstallLocation="C:\Program Files\My Company\My Product">
+        InstallLocation="C:\Program Files\MoeKoe Music Lite">
     </Installer>
     <PackageInformation
-        PackageName="My Product"
-        PackageDisplayName="My Product"
-        PublisherName="CN=My Company"
-        PublisherDisplayName="My Company"
+        PackageName="MoeKoe Music Lite"
+        PackageDisplayName="MoeKoe Music Lite"
+        PublisherName="CN=MoeKoe Music"
+        PublisherDisplayName="MoeKoe Music"
         Version="0.1.0.0"
-        PackageDescription="A moekoemusic-lite application">
+        PackageDescription="MoeKoeLite 萌音极速版">
         <Capabilities>
             <Capability Name="runFullTrust" />
-            
+
         </Capabilities>
         <Applications>
             <Application
-                Id="com.example.moekoemusiclite"
-                Description="A moekoemusic-lite application"
-                DisplayName="My Product"
+                Id="cn.latedream.moekoemusic-lite"
+                Description="MoeKoeLite 萌音极速版"
+                DisplayName="MoeKoe Music Lite"
                 ExecutableName="moekoemusic-lite.exe"
                 EntryPoint="Windows.FullTrustApplication">
-                
+
             </Application>
         </Applications>
         <Resources>
-            <Resource Language="en-us" />
+            <Resource Language="zh-cn" />
+            <Resource Language="zh-tw" />
+            <Resource Language="en" />
+            <Resource Language="ja" />
+            <Resource Language="ko" />
+            <Resource Language="ru" />
         </Resources>
         <Dependencies>
             <TargetDeviceFamily Name="Windows.Desktop" MinVersion="10.0.17763.0" MaxVersionTested="10.0.19041.0" />
         </Dependencies>
         <Properties>
             <Framework>false</Framework>
-            <DisplayName>My Product</DisplayName>
-            <PublisherDisplayName>My Company</PublisherDisplayName>
-            <Description>A moekoemusic-lite application</Description>
+            <DisplayName>MoeKoe Music Lite</DisplayName>
+            <PublisherDisplayName>MoeKoe Music</PublisherDisplayName>
+            <Description>MoeKoeLite 萌音极速版</Description>
             <Logo>Assets\AppIcon.png</Logo>
         </Properties>
     </PackageInformation>

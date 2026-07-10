@@ -6,10 +6,10 @@
 		"0000": {
 			"ProductVersion": "0.1.0",
 			"CompanyName": "MoeKoe Music",
-			"FileDescription": "MoeKoe 萌音,一个高颜值的kugou第三方播放器",
+			"FileDescription": "MoeKoeLite 萌音极速版",
 			"LegalCopyright": "© 2026 MoeKoe Music",
 			"ProductName": "MoeKoe Music Lite",
-			"Comments": ""
+			"Comments": "MoeKoe 萌音,一个高颜值的kugou第三方播放器"
 		}
 	}
 }

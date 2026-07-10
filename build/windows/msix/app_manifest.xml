@@ -6,50 +6,55 @@
   xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities"
   xmlns:desktop="http://schemas.microsoft.com/appx/manifest/desktop/windows10"
   IgnorableNamespaces="uap3">
-  
-  <Identity 
-    Name="com.example.moekoemusiclite"
-    Publisher="CN=My Company"
-    Version="0.1.0.0" 
+
+  <Identity
+    Name="com.latedream.moekoemusic-lite"
+    Publisher="CN=MoeKoe Music"
+    Version="0.1.0.0"
     ProcessorArchitecture="x64" />
-  
+
   <Properties>
-    <DisplayName>My Product</DisplayName>
-    <PublisherDisplayName>My Company</PublisherDisplayName>
-    <Description>A moekoemusic-lite application</Description>
+    <DisplayName>MoeKoe Music Lite</DisplayName>
+    <PublisherDisplayName>MoeKoe Music</PublisherDisplayName>
+    <Description>MoeKoeLite 萌音极速版</Description>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
-  
+
   <Dependencies>
     <TargetDeviceFamily Name="Windows.Desktop" MinVersion="10.0.17763.0" MaxVersionTested="10.0.19041.0" />
   </Dependencies>
-  
+
   <Resources>
-    <Resource Language="en-us" />
+    <Resource Language="zh-cn" />
+    <Resource Language="zh-tw" />
+    <Resource Language="en" />
+    <Resource Language="ja" />
+    <Resource Language="ko" />
+    <Resource Language="ru" />
   </Resources>
-  
+
   <Applications>
     <Application Id="com.example.moekoemusiclite" Executable="moekoemusic-lite.exe" EntryPoint="Windows.FullTrustApplication">
       <uap:VisualElements
-        DisplayName="My Product"
-        Description="A moekoemusic-lite application"
+        DisplayName="MoeKoe Music Lite"
+        Description="MoeKoeLite 萌音极速版"
         BackgroundColor="transparent"
         Square150x150Logo="Assets\Square150x150Logo.png"
         Square44x44Logo="Assets\Square44x44Logo.png">
         <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png" />
         <uap:SplashScreen Image="Assets\SplashScreen.png" />
       </uap:VisualElements>
-      
+
       <Extensions>
         <desktop:Extension Category="windows.fullTrustProcess" Executable="moekoemusic-lite.exe" />
-        
-        
+
+
       </Extensions>
     </Application>
   </Applications>
-  
+
   <Capabilities>
     <rescap:Capability Name="runFullTrust" />
-    
+
   </Capabilities>
 </Package>

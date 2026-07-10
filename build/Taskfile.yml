@@ -95,7 +95,7 @@ tasks:
     cmds:
       - task: frontend:run
         vars:
-          SCRIPT: 'build{{end}}'
+          SCRIPT: 'build'
     env:
       PRODUCTION: '{{if eq .DEV "true"}}false{{else}}true{{end}}'
 
