@@ -9,16 +9,19 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@wailsio/runtime": "latest",
     "axios": "^1.18.1",
+    "music-metadata": "^11.7.3",
     "pinia": "^3.0.0",
     "pinia-plugin-persistedstate": "^4.1.1",
     "vue": "^3.5.39",
     "vue-i18n": "^10.0.4",
     "vue-router": "^4.4.5",
-    "vue3-virtual-scroller": "^0.2.3",
-    "music-metadata": "^11.7.3"
+    "vue3-virtual-scroller": "^0.2.3"
   },
   "devDependencies": {
+    "@latedream/moekoe-latelib-types": "^0.1.0",
+    "@latedream/moekoe-types": "^1.6.7",
     "@vitejs/plugin-vue": "^6.0.7",
     "sass-embedded": "^1.100.0",
     "vite": "^8.1.0"

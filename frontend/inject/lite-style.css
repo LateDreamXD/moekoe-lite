@@ -1,0 +1,12 @@
+body {
+	/* fix background transparent */
+	background-color: #fff;
+}
+
+.app-header, .side-top-actions {
+	--wails-draggable: drag;
+
+	a, button, i, input {
+		--wails-draggable: no-drag;
+	}
+}
