@@ -1,15 +1,15 @@
 {
 	"fixed": {
-		"file_version": "{{.Info.ProductVersion}}"
+		"file_version": "0.1.0"
 	},
 	"info": {
 		"0000": {
-			"ProductVersion": "{{.Info.ProductVersion}}",
-			"CompanyName": "{{.Info.CompanyName}}",
-			"FileDescription": "{{.Info.ProductName}}",
-			"LegalCopyright": "{{.Info.Copyright}}",
-			"ProductName": "{{.Info.ProductName}}",
-			"Comments": "{{.Info.Comments}}"
+			"ProductVersion": "0.1.0",
+			"CompanyName": "MoeKoe Music",
+			"FileDescription": "MoeKoe 萌音,一个高颜值的kugou第三方播放器",
+			"LegalCopyright": "© 2026 MoeKoe Music",
+			"ProductName": "MoeKoe Music Lite",
+			"Comments": ""
 		}
 	}
 }

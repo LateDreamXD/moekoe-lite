@@ -1,0 +1,13 @@
+[Desktop Entry]
+Version=1.0
+Name=MoeKoe Music Lite
+Comment=MoeKoe 萌音,一个高颜值的kugou第三方播放器
+# The Exec line includes %u to pass the URL to the application
+Exec=/usr/local/bin/moekoemusic-lite.exe %u
+Terminal=false
+Type=Application
+Icon=moekoemusic-lite.exe
+Categories=Music;
+StartupWMClass=moekoemusic-lite.exe
+
+
