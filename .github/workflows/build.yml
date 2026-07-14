@@ -1,0 +1,88 @@
+name: Build and Release
+
+on:
+  push:
+    branches: ['main']
+    tags: ['v*']
+  pull_request:
+    branches: ['main']
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: windows-latest
+            platform: windows
+          - os: ubuntu-latest
+            platform: linux
+          - os: macos-latest
+            platform: macos
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+        with:
+          submodules: true
+
+      - name: Setup GO
+        uses: actions/setup-go@v6
+        with:
+          go-version-file: go.mod
+          cache-dependency-path: go.sum
+
+      - name: Setup PNPM
+        uses: pnpm/action-setup@v6
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: pnpm
+
+      - name: Install Linux deps
+        if: matrix.platform == 'linux'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libgtk-4-dev libwebkitgtk-6.0-dev pkg-config build-essential
+
+      - name: Build
+        shell: bash
+        run: |
+          set -euo pipefail
+          export PATH="$(go env GOPATH)/bin:$PATH"
+          go install github.com/wailsapp/wails/v3/cmd/wails3@v3.0.0-alpha2.117
+
+          if [ "${{ matrix.platform }}" = "windows" ]; then
+            wails3 task windows:build
+          elif [ "${{ matrix.platform }}" = "linux" ]; then
+            wails3 task linux:create:deb
+            wails3 task linux:create:rpm
+          else
+            wails3 task darwin:package:universal
+          fi
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v6
+        with:
+          name: ${{ matrix.platform }}
+          path: bin/**/*
+
+  release:
+    needs: build
+    if: ${{ github.ref_type == 'tag' }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Download artifacts
+        uses: actions/download-artifact@v6
+        with:
+          path: dist
+          merge-multiple: true
+
+      - name: Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/**/*
